@@ -1,0 +1,10 @@
+Package: darwintools
+Version: 0.6.8
+Date: 2019-05-05
+Title: Collection of functions for data import and evalution
+Author: Pavel Nesladek <pavel.nesladek@amtc-dresden.com>
+Maintainer: Pavel Nesladek <pavel.nesladek@amtc-dresden.com>
+Depends: R (>= 2.11.1), fields, XML
+Lazy-loading: yes
+Description:Collection of functions for import of data from different pattern & blank inspection tools  e.g. KLA, NuFlare, Lasertec, Siemens DFx (ascii format), KLA (XML), as well as Verity .svd spectrometer data and N&K reflectometer data. Calculation of particle density from defect data, plot and co-plot of defect maps, defect subtraction and cluster estimation, calculation of defect density, smoothing, etc.
+License: GPL (>= 2)
