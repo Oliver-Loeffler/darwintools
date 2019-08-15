@@ -64,12 +64,15 @@ readLT <- function (Fname, CATS = TRUE)
     Pixel <- as.numeric(sapply(strsplit(data, ","), "[", 9))
     Bin <- as.numeric(sapply(strsplit(data, ","), "[", 10))
     ID <- 1:length(X)
-    if (length(FrontID) > 0 & any(DISEID < BackID)) {
-        Start <- DISEID[which(DISEID < BackID)]
-        End <- BackID - 2
+    # and now DISE front
+    if (length(FrontID)>0 & any(DISEID < EOFID)) {
+        Start <- DISEID[1]
+        if (length(BackID)>0) End <- BackID-2 else End <- EOFID-2
+        
         if (End >= Start + 2 & substr(tmp[Start + 2], 1, 1) %in% 0:9) 
             dataDISEF <- tmp[(Start + 2):End]
     }    else dataDISEF <- c()
+    # and DISE back
     if (length(BackID) > 0 & any(DISEID > BackID)) {
         Start <- DISEID[which(DISEID > BackID)]
         End <- EOFID - 2
@@ -78,14 +81,11 @@ readLT <- function (Fname, CATS = TRUE)
     } else dataDISEB <- c()
     dataDISE <- c(dataDISEF, dataDISEB)
     if (length(dataDISE) > 0) {
-        DISEId <- as.numeric(sapply(strsplit(dataDISE, ","), 
-                                    "[", 1))
+        DISEId <- as.numeric(sapply(strsplit(dataDISE, ","), "[", 1))
         DISESide <- sapply(strsplit(dataDISE, ","), "[", 2)
-        DISESizeX <- as.numeric(sapply(strsplit(dataDISE, ","), 
-                                       "[", 6)) * 1000
-        DISESizeY <- as.numeric(sapply(strsplit(dataDISE, ","), 
-                                       "[", 7)) * 1000
-        DISESize <- DISESizeX
+        DISESizeX <- as.numeric(sapply(strsplit(dataDISE, ","), "[", 6)) * 1000
+        DISESizeY <- as.numeric(sapply(strsplit(dataDISE, ","), "[", 7)) * 1000
+        DISESize <- apply(cbind(DISESizeX, DISESizeY), 1, max)
         DISE <- data.frame(ID = DISEId, Side = DISESide, SizeX = DISESizeX, 
                            SizeY = DISESizeY, Size = DISESize)
         if (any(DISE$Side == "Front")) {

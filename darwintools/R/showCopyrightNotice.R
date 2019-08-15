@@ -22,7 +22,7 @@
 #-----------------------------------------
 showCopyrightNotice <- function()
 {
-   x<-paste( "darwintools version 0.6.7, Copyright (C) 2019  Pavel Nesladek",
+   x<-paste( "darwintools version 0.6.9, Copyright (C) 2019  Pavel Nesladek",
              "darwintools comes with ABSOLUTELY NO WARRANTY; for details type 'showLicense()'.",
              "This is free software, and you are welcome to redistribute it",
              "under certain conditions; type 'showLicense()' for details.",sep="\n" )
