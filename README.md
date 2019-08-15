@@ -27,3 +27,15 @@ Collection of functions for import of data from different pattern & blank inspec
 R CMD INSTALL --build --no-multiarch --force darwintools
 
 ```
+
+## Release notes
+
+### 0.6.9
+
+* Patched recently discovered bug in readLT() function (thanks JIrka), causing defect size estimation based on raw or DISE in X-direction, in some cases ignoring the DISE measurement. Current version of the readLT() is estimating the defect size either as maximum from the both X- and Y- sizes in DISE, or X direction from raw part, if DISE not available.
+
+* All Verity spectrometer related function were transferred from darwintools to emma, to simplify the package maintenance and avoid very frequent updates of darwintools, as the Tetra related functions are currently changing very frequently.
+
+### 0.6.8
+
+* First public release.
